@@ -1,4 +1,4 @@
-# events-app
+# Program-blog
 
 ## Project setup
 ```
