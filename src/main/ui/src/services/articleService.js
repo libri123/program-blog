@@ -1,4 +1,4 @@
-// client/src/services/EventService.js
+// client/src/services/articleService.js
 
 import axios from "axios"
 

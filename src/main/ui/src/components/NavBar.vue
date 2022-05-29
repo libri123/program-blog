@@ -8,6 +8,7 @@
     <div id="navbar" class="navbar-menu">
       <div class="navbar-start">
         <router-link to="/" class="navbar-item">Home</router-link>
+        <router-link to="/articles" class="navbar-item">Articles</router-link>
         <router-link to="/about" class="navbar-item">About</router-link>
       </div>
       <div class="navbar-end">

@@ -3,7 +3,7 @@
     <section class="hero is-dark">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Welcome to DaFei Blog</h1>
+          <h1 class="title">Welcome to Program Blog</h1>
           <h2 class="subtitle">
             A web application to store study materials
           </h2>
