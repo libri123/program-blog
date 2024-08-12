@@ -17,6 +17,11 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+    name: 'AboutPage',
+};
+</script>
 <style lang="scss" scoped>
   .org-description {
     margin-top: 50px;

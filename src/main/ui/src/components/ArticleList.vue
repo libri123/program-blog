@@ -23,12 +23,6 @@
     components: {
       ArticleCard,
     },
-    data() {
-      return {
-        article: {},
-        articles: []
-      };
-    },
     created() {
       this.getArticlesData();
     },

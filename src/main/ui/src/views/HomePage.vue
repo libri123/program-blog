@@ -21,7 +21,7 @@
 <script>
   import ArticleList from '../components/ArticleList.vue';
   export default {
-    name: 'homePage',
+    name: 'HomePage',
     components: {
       ArticleList
     },
