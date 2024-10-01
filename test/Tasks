@@ -14,3 +14,13 @@
 
     Payment gateways (e.g., Stripe, PayPal).
     Save cards for future use (optional, depending on security considerations).
+
+4. Order Tracking:
+
+    Users can track their orders in real-time.
+    Provide estimated delivery times.
+
+5. Admin Panel:
+
+    Manage restaurant listings, menus, and orders.
+    Analytics and reports.

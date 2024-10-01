@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Food Ordering App</title>
+</head>
+<body>
+    <h1>Available Restaurants</h1>
+    <div class="restaurant-list">
+        {% for restaurant in restaurants %}
+        <div class="restaurant">
+            <h2>{{ restaurant.name }}</h2>
+            <ul>
+                {% for item in restaurant.menu_items %}
+                <li>
+                    {{ item.item_name }} - ${{ item.price }}
+                    <form action="{{ url_for('add_to_cart') }}" method="POST">
+                        <input type="hidden" name="item" value="{{ item.item_name }}">
+                        <input type="hidden" name="price" value="{{ item.price }}">
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>    
+</body>
+</html>

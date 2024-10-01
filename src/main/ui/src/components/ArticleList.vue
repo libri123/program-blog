@@ -18,12 +18,19 @@
 <script>
   import ArticleCard from '@/components/ArticleCard';
   import articleService from '@/services/articleService.js';
+  import { mapState, mapActions } from 'vuex'
+
   export default {
     name: 'ArticleList',
     components: {
       ArticleCard,
     },
-    created() {
+    data() {
+      return {
+        articles: {},
+      };
+    },
+    beforeMount() {
       this.getArticlesData();
     },
     methods: {
