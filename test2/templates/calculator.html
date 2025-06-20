@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Calculator</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Canvas Calculator</h1>
+    <canvas id="calculatorCanvas" width="300" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById("calculatorCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const buttons = [
+            { label: '7', x: 10, y: 100 }, { label: '8', x: 80, y: 100 }, { label: '9', x: 150, y: 100 }, { label: '/', x: 220, y: 100 },
+            { label: '4', x: 10, y: 160 }, { label: '5', x: 80, y: 160 }, { label: '6', x: 150, y: 160 }, { label: '*', x: 220, y: 160 },
+            { label: '1', x: 10, y: 220 }, { label: '2', x: 80, y: 220 }, { label: '3', x: 150, y: 220 }, { label: '-', x: 220, y: 220 },
+            { label: '0', x: 10, y: 280 }, { label: '.', x: 80, y: 280 }, { label: '=', x: 150, y: 280 }, { label: '+', x: 220, y: 280 },
+            { label: 'C', x: 10, y: 340, width: 260 }
+        ];
+
+        let currentInput = '';
+        let operator = '';
+        let previousInput = '';
+
+        // Function to draw buttons
+        function drawCalculator() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw display
+            ctx.fillStyle = "#000";
+            ctx.fillRect(10, 20, 260, 60);
+            ctx.fillStyle = "#fff";
+            ctx.font = "30px Arial";
+            ctx.fillText(currentInput || "0", 20, 60);
+
+            // Draw buttons
+            ctx.font = "20px Arial";
+            buttons.forEach(button => {
+                ctx.fillStyle = "#ddd";
+                ctx.fillRect(button.x, button.y, button.width || 60, 50);
+                ctx.fillStyle = "#000";
+                ctx.fillText(button.label, button.x + 20, button.y + 30);
+            });
+        }
+
+        // Function to handle button click
+        function handleClick(x, y) {
+            buttons.forEach(button => {
+                if (x > button.x && x < button.x + (button.width || 60) && y > button.y && y < button.y + 50) {
+                    processInput(button.label);
+                }
+            });
+        }
+
+        // Function to process the input (button press)
+        function processInput(value) {
+            if (['+', '-', '*', '/'].includes(value)) {
+                operator = value;
+                previousInput = currentInput;
+                currentInput = '';
+            } else if (value === '=') {
+                if (operator && previousInput) {
+                    currentInput = eval(previousInput + operator + currentInput).toString();
+                    operator = '';
+                    previousInput = '';
+                }
+            } else if (value === 'C') {
+                currentInput = '';
+                operator = '';
+                previousInput = '';
+            } else {
+                currentInput += value;
+            }
+            drawCalculator();
+        }
+
+        // Add event listener for canvas clicks
+        canvas.addEventListener("click", (event) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            handleClick(x, y);
+        });
+
+        // Initial draw
+        drawCalculator();
+    </script>
+</body>
+</html>
